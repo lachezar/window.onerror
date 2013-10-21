@@ -11,7 +11,7 @@ buster.testCase("Call onerror", {
   },
     
   "exception within the system": function () {
-    window.onerror('error message', 'http://' + hostname + '/test.js', 11);
+    window.onerror('error message', 'http://' + hostname + '/test.js', 11, 0);
     assert.isTrue($.post.called);
   },
   

@@ -1,5 +1,5 @@
 initErrorHandler = function(errorUrl, staticHost) {
-  window.onerror = function(message, scriptUrl, line) {
+  window.onerror = function(message, scriptUrl, line, column) {
     var regex = new RegExp("^https?://" + staticHost);
     if (regex.test(scriptUrl) && scriptUrl.indexOf('.js') > -1) {
       // if the script origin is ours
@@ -8,10 +8,11 @@ initErrorHandler = function(errorUrl, staticHost) {
         errorUrl,
         {
           location: location.href, 
+          useragent: navigator.userAgent,
           message: message, 
           scriptUrl: scriptUrl, 
           line: line, 
-          useragent: navigator.userAgent
+          column: column
         }
       );
     }
