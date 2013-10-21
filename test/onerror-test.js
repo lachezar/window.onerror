@@ -1,4 +1,5 @@
 var assert = buster.referee.assert;
+var hostname = location.hostname;
 
 buster.testCase("Call onerror", {
 
@@ -6,11 +7,11 @@ buster.testCase("Call onerror", {
     $ = {};
     $.post = this.spy();
 
-    initErrorHandler("/error", "localhost");
+    initErrorHandler("/error", hostname);
   },
     
   "exception within the system": function () {
-    window.onerror('error message', 'http://localhost/test.js', 11);
+    window.onerror('error message', 'http://' + hostname + '/test.js', 11);
     assert.isTrue($.post.called);
   },
   
@@ -33,7 +34,7 @@ buster.testCase("Call onerror", {
   },
   
   "error from unknown source": function() {
-    window.onerror('error message', 'http://localhost/foo', 11);
+    window.onerror('error message', 'http://' + hostname + '/foo', 11);
     assert.isFalse($.post.called);
   }
 });
