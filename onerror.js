@@ -1,4 +1,4 @@
-initErrorHandler = function(errorUrl, staticHost) {
+var initErrorHandler = function(errorUrl, staticHost) {
   window.onerror = function(message, scriptUrl, line, column) {
     var regex = new RegExp("^https?://" + staticHost);
     if (regex.test(scriptUrl) && scriptUrl.indexOf('.js') > -1) {
