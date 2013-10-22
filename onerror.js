@@ -17,4 +17,4 @@ var initErrorHandler = function(errorUrl, staticHost) {
       );
     }
   };
-}
+};
